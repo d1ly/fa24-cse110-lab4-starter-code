@@ -19,7 +19,7 @@ const AddExpenseForm = () => {
 
     // Exercise: Add add new expense to expenses context array
     let newId = "0";
-    if (expenses.length != 0) {
+    if (expenses.length !== 0) {
       newId = (parseInt(expenses[expenses.length - 1].id) + 1).toString()
     } 
     const newExpense: Expense = {id: newId, name: name, cost: cost}

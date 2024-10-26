@@ -47,7 +47,8 @@ const AddExpenseForm = () => {
           <label htmlFor="cost">Cost</label>
           <input
             required
-            type="number" //shouldnt this be a number
+            type="number"
+            min = "0" //prevent negative numbers
             className="form-control"
             id="cost"
             value={cost}

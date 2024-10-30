@@ -19,7 +19,7 @@ describe("Creating an Expense", () => {
       fireEvent.change(screen.getByLabelText("Cost"), { target: { value: 5 } });
       fireEvent.click(screen.getByRole("button", {name: /save/i}));
 
-      expect(screen.getByText("broceries")).toBeInTheDocument();
+      expect(screen.getByText("Groceries")).toBeInTheDocument();
       expect(screen.getByText("Remaining: $995")).toBeInTheDocument();
       expect(screen.getByText("Spent so far: $5")).toBeInTheDocument();
     })

@@ -85,7 +85,7 @@ describe("Deleting an Expense", () => {
     expect(screen.getByText("Spent so far: $5")).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", {name: /x/i}));
-    expect(screen.queryByText("broceries")).not.toBeInTheDocument();
+    expect(screen.queryByText("groceries")).not.toBeInTheDocument();
     expect(screen.getByText("Remaining: $1000")).toBeInTheDocument();
     expect(screen.getByText("Spent so far: $0")).toBeInTheDocument();
 

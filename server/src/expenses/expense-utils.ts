@@ -23,18 +23,21 @@ export async function createExpenseServer(req: Request, res: Response, db: Datab
  }
  
 
-export function deleteExpense(req: Request, res: Response, db: Database) {
+export async function deleteExpense(req: Request, res: Response, db: Database) {
     const { id } = req.params;
-    /*
-    const expenseIndex = expenses.findIndex(expense => expense.id === id);
+    try {
+        const expense = await db.get("SELECT * FROM expenses WHERE id = ?", [id]);
+        if (!expense) {
+            return res.status(404).send({ error: "Expense not found" });
+        }
 
-    if (expenseIndex === -1) {
-        return res.status(404).send({ error: "Expense not found" });
-    }
-    // removes expense from array
-    const [deletedExpense] = expenses.splice(expenseIndex, 1);
-    res.status(200).send(deletedExpense);
-    */
+        await db.run("DELETE FROM expenses WHERE id = ?", [id]);
+
+        res.status(200).send({ message: "Expense successfully deleted", deletedExpense: expense });
+    } catch (error) {
+        console.error("Error deleting expense:", error);
+        res.status(500).send({ error: `Failed to delete expense + ${error}` });
+    };
 }
 
 export async function getExpenses(req: Request, res: Response, db: Database) {
